@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css?family=Fugaz+One&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+/* @import url('https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap'); */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Open Sans", sans-serif; }
+
+.loading-content {
+    height: 100vh;
+    width: 100vw;
+    background: white;
+    z-index: 200;
+    position: absolute;
+    opacity: 1;
+    transition: all ease-in-out 3s;
+}
+
+.loading-content.hide {
+    opacity: 0;
+}

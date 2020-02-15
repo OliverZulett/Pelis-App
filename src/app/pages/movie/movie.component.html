@@ -1,0 +1,114 @@
+<div 
+  *ngIf="loading" 
+  class="loading-content"
+  [ngClass]="{'hide': hideLoading}"
+>
+    <app-loading ></app-loading>
+</div>
+
+<div 
+    *ngIf="dataCharged"
+    class="movie-container w-100 h-auto bg-dark d-flex align-items-center"
+    [ngStyle]="{'background-image': 'linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)),url(' + backgroundUrl + ')'} "
+>
+    <div class="container mt-5 mb-4 pt-5 pb-5">
+        <div class="movie-content d-flex text-light flex-wrap flex-md-nowrap align-items-sm-end align-items-md-center h-100">
+            <div class="movie-image d-flex justify-content-center align-items-sm-end align-items-md-end p-4">
+                <img src="https://image.tmdb.org/t/p/original{{movie.poster_path}}" class="img-fluid rounded" alt="Responsive image">
+            </div>
+            <div  class="movie-description d-flex flex-column text-left p-3">
+                <div>
+                    <h1>
+                        {{movie.title}}
+                    </h1>
+                    <em *ngIf="showTagLine">
+                        {{movie.tagline}}
+                    </em>
+                </div>
+                <div class="d-flex align-items-center">
+                    <div>
+                        <p class="lead">
+                            Calificacion: 
+                        </p>
+                    </div>
+                    <div 
+                        class="progress-circle p{{movie.vote_average * 10}} mt-3 mb-3"
+                        [ngClass]="{'over50': movie.vote_average > 5}"
+                    >
+                        <span>{{movie.vote_average}}%</span>
+                        <div class="left-half-clipper">
+                           <div class="first50-bar"></div>
+                           <div class="value-bar"></div>
+                        </div>
+                     </div>
+                </div>
+                <div>
+                    <div *ngIf="showGenres">
+                        <p class="lead">
+                            Generos:
+                        </p>
+                    </div>
+                    <div>
+                        <span 
+                            class="badge badge-pill badge-primary {{ this.colors[genre.name] }}"
+                            *ngFor="let genre of movie.genres"
+                        >
+                            {{genre.name}}
+                        </span>
+                    </div>
+                </div>
+                <div *ngIf="showOverview" class="mt-3">
+                    <p class="lead">Sinopsis:</p>
+                    <p>
+                        {{movie.overview}}
+                    </p>
+                </div>
+                <div *ngIf="showRunTime">
+                    <p class="lead">
+                        Duracion: 
+                    </p>
+                    <p>
+                        {{movie.runtime}} min
+                    </p>
+                </div>
+                <div>
+                    <p class="lead">
+                        Fecha de estreno: 
+                    </p>
+                    <p>
+                        {{movie.release_date | date: 'fullDate'}}
+                    </p>
+                </div>
+                <div *ngIf="showRevenue">
+                    <p class="lead">
+                        Recaudacion: 
+                    </p>
+                    <p>
+                        {{movie.revenue | currency}}
+                    </p>
+                </div>
+                <div *ngIf="showCollection" class="movie-collection">
+                    <p class="lead">
+                        Saga:
+                    </p>
+                    <p>
+                        {{movie.belongs_to_collection.name}}
+                    </p>
+                    <div class="collection">
+                        <app-movie-list 
+                            [moviesObject]="collection.parts" 
+                            [pagination]="false" 
+                        ></app-movie-list>
+                    </div>
+                </div>
+                <div *ngIf="showLink" class="mt-4">
+                    <button 
+                      class="offset"
+                    >
+                      Sitio Web
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>

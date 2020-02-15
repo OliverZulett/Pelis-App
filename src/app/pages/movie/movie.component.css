@@ -1,0 +1,48 @@
+.movie-container {
+  min-height: 100vh;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+.movie-container .container {
+  /* margin-top: 5em;
+    margin-bottom: 3em; */
+  z-index: 10;
+}
+.movie-container .movie-content {
+}
+
+.movie-container .movie-content .movie-image {
+  min-width: 45%;
+}
+.movie-container .movie-content .movie-description {
+  min-width: 55%;
+}
+
+.movie-container .movie-content .movie-description .movie-link {
+  background: linear-gradient(
+    90deg,
+    rgba(158, 61, 100, 1) 0%,
+    rgba(254, 94, 81, 1) 50%,
+    rgba(255, 181, 84, 1) 100%
+  );
+  border-color: tomato;
+  color: white;
+}
+
+.movie-container .movie-content .movie-description .movie-link:hover {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 181, 84, 1) 0%,
+    rgba(254, 94, 81, 1) 50%,
+    rgba(158, 61, 100, 1) 100%
+  );
+  border-color: tomato;
+  color: white;
+}
+
+.movie-collection .collection {
+  overflow: auto;
+}

@@ -1,0 +1,25 @@
+<div 
+    class="mb-container w-100 h-100 bg-dark d-flex align-items-center"
+    [ngStyle]="{'background-image': 'linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)),url('+ movieBackground +')'} "
+    >
+    <div class="container mt-5 mb-4">
+        <div class="mb-content d-flex flex-column text-light justify-content-center h-100">
+            <div class="text-center">
+                <h1>
+                    Pelis App
+                </h1>
+            </div>
+            <div class="mb-subtitle d-flex justify-content-center">
+                <div class="slide-title">Una app para encontrar</div>
+                <div class="slide-1">
+                    <span>{{this.message}}</span>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center mt-5">
+                <div class="chevron"></div>
+                <div class="chevron"></div>
+                <div class="chevron"></div>
+            </div>
+        </div>
+    </div>
+</div>

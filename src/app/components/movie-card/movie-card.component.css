@@ -1,0 +1,136 @@
+body {
+  background-color: #fef5df;
+}
+
+.cm-container {
+  /* width: 333px; */
+  height: 500px;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
+  background: url("http://image.tmdb.org/t/p/w500/y95lQLnuNKdPAzw9F9Ab8kJ80c3.jpg");
+  background-color: black;
+  background-size: cover;
+  cursor: pointer;
+  -webkit-box-shadow: 0 0 5px #000;
+  box-shadow: 0 0 5px #000;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 2fr 2fr 1fr;
+  background: linear-gradient(
+    90deg,
+    rgba(158, 61, 100, 0.336) 0%,
+    rgba(254, 95, 81, 0.301) 50%,
+    rgba(175, 124, 58, 0.308) 100%
+  );
+  color: #fffbf1;
+  opacity: 0;
+  transition: all 0.5s;
+  /* font-family: "Playfair Display", serif; */
+}
+
+.movie {
+  padding-left: 20px;
+  padding-right: 10px;
+  letter-spacing: 3px;
+}
+
+.head {
+  font-size: 30px;
+  line-height: 40px;
+  transform: translateY(40px);
+  transition: all 0.7s;
+}
+.head hr {
+  display: block;
+  width: 0;
+  border: none;
+  border-bottom: solid 2px #fef5df;
+  position: absolute;
+  /* bottom: 0; */
+  left: 20px;
+  transition: all 0.5s;
+}
+
+.release {
+  font-size: 22px;
+  line-height: 10px;
+  font-weight: bold;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.7s;
+}
+.release .old {
+  text-decoration: line-through;
+  color: #b3b3b3;
+}
+
+.description {
+  font-size: 15px;
+  opacity: 0;
+  letter-spacing: 1px;
+  /* font-family: "Lato", sans-serif; */
+  transform: translateY(40px);
+  transition: all 0.7s;
+}
+.description i {
+  font-size: 16px;
+}
+.description span {
+  margin-left: 10px;
+}
+
+.cm-container:hover .overlay {
+  opacity: 1;
+}
+.cm-container:hover .overlay .head {
+  transform: translateY(0px);
+}
+.cm-container:hover .overlay hr {
+  width: 75px;
+  transition-delay: 0.4s;
+}
+.cm-container:hover .overlay .release {
+  transform: translateY(0px);
+  transition-delay: 0.3s;
+  opacity: 1;
+}
+.cm-container:hover .overlay .description {
+  transform: translateY(0px);
+  transition-delay: 0.6s;
+  opacity: 1;
+}
+
+/* // Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+  .cm-container {
+    width: 85%;
+  }
+}
+
+/* // Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .cm-container {
+    width: 90%;
+  }
+}
+
+/* // Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .cm-container {
+    width: 300px;
+  }
+}
+
+@media (min-width: 992px) {
+  .cm-container {
+    width: 333px;
+  }
+}

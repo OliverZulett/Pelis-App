@@ -1,0 +1,23 @@
+<div
+  class="cm-container m-3"
+  [ngStyle]="{
+    'background-image':
+      'url(http://image.tmdb.org/t/p/w500' + movie.poster_path + ')'
+  }"
+  (click)="goMovie(movie)"
+>
+  <div class="overlay">
+    <div class="movie"></div>
+    <div class="movie head">
+      <p>{{ movie.title }}</p>
+      <hr />
+    </div>
+    <div class="movie description">
+      <!-- <i class="fa fa-shopping-cart"></i> -->
+      <span>{{ movie.overview | truncateText: 200 }}</span>
+    </div>
+    <div class="movie release">
+      <p class="new">{{ movie.release_date | date }}</p>
+    </div>
+  </div>
+</div>

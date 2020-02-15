@@ -1,0 +1,163 @@
+@import url("https://fonts.googleapis.com/css?family=Alata|Raleway&display=swap");
+
+.mb-container {
+  min-height: 100vh;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+.mb-container .container {
+  /* margin-top: 5em;
+    margin-bottom: 3em; */
+  z-index: 10;
+}
+
+.mb-container .mb-content h1 {
+  font-family: "Alata", sans-serif;
+}
+
+.mb-container .mb-content .mb-description .mb-link {
+  background: linear-gradient(
+    90deg,
+    rgba(158, 61, 100, 1) 0%,
+    rgba(254, 94, 81, 1) 50%,
+    rgba(255, 181, 84, 1) 100%
+  );
+  border-color: tomato;
+  color: white;
+}
+
+.mb-container .mb-content .mb-description .mb-link:hover {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 181, 84, 1) 0%,
+    rgba(254, 94, 81, 1) 50%,
+    rgba(158, 61, 100, 1) 100%
+  );
+  border-color: tomato;
+  color: white;
+}
+
+/* subtitle */
+.mb-subtitle div {
+  display: inline-block;
+  overflow: hidden;
+  font-family: "Raleway", sans-serif;
+  /* white-space: nowrap; */
+  margin-right: 5px;
+}
+
+.mb-subtitle .slide-title {
+  animation: showup 7s infinite;
+}
+
+.mb-subtitle .slide-1 {
+  width: 0px;
+  animation: reveal-1 7s infinite;
+}
+
+.mb-subtitle .slide-1 span {
+  margin-left: -250px;
+  animation: slidein-1 7s infinite;
+  color: rgba(255, 255, 255, 0.664);
+}
+
+@keyframes showup {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes slidein-1 {
+  0% {
+    margin-left: -800px;
+  }
+  20% {
+    margin-left: -800px;
+  }
+  35% {
+    margin-left: 0px;
+  }
+  100% {
+    margin-left: 0px;
+  }
+}
+
+@keyframes reveal-1 {
+  0% {
+    opacity: 0;
+    width: 0px;
+  }
+  20% {
+    opacity: 1;
+    width: 0px;
+  }
+  30% {
+    width: auto;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    width: auto;
+  }
+}
+
+/* // Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 767.98px) {
+  .mb-container .mb-content h1 {
+    font-size: 8em;
+    margin-bottom: 50px;
+  }
+
+  .mb-subtitle div {
+    font-size: 0.77autoem;
+  }
+}
+
+/* // Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .mb-container .mb-content h1 {
+    font-size: 15em;
+    margin-bottom: 50px;
+  }
+
+  .mb-subtitle div {
+    font-size: 1.3em;
+  }
+}
+
+/* // Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .mb-container .mb-content h1 {
+    font-size: 15em;
+    margin-bottom: 50px;
+  }
+
+  .mb-subtitle div {
+    font-size: 1.3em;
+  }
+}
+
+/* // Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .mb-container .mb-content h1 {
+    font-size: 15em;
+  }
+
+  .mb-subtitle div {
+    font-size: 1.3em;
+  }
+}

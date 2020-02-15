@@ -1,0 +1,56 @@
+<div 
+  *ngIf="loading" 
+  class="loading-content"
+  [ngClass]="{'hide': hideLoading}"
+>
+    <app-loading ></app-loading>
+</div>
+
+<app-movie-background 
+  *ngIf="dataCharged" 
+  [backgroundImage]="backgroundUrl"
+  [backgroundMessage]="messagesBackground"
+>
+</app-movie-background>
+
+<section 
+  *ngIf="dataCharged"
+  class="container"
+>
+  <div class="mt-5">
+    <h1 class="display-2 rellax">Pelis App</h1>
+    <p><em>Desarrollado por Oliver Zulett</em></p>
+    <p class="lead">
+        Pelis app es una aplicacion desarrollada en angular que consume la rest api de <a href="">The Movie DB</a>
+        para mostrarte las peliculas que estan en cartelera, las peliculas mas populares del momento y las mas
+        populares entre los niños.
+    </p>
+  </div>
+  <div class="mt-5 mb-5">
+    <div class="d-flex flex-wrap justify-content-center">
+      <app-movie-card 
+          *ngFor="let movie of movies | paginate: { itemsPerPage: 9, currentPage: p }"
+          class="d-flex justify-content-center"
+          [movieObject]="movie"
+      >
+      </app-movie-card>
+    </div>
+  </div>
+  <div class="mt-5 mb-5 d-flex justify-content-center">
+    <pagination-controls 
+      class="my-pagination"
+      (pageChange)="p = $event"
+      (pageBoundsCorrection)="p = $event"
+      maxSize="5"
+      directionLinks="true"
+      autoHide="true"
+      responsive="true"
+      previousLabel=""
+      nextLabel=""
+      screenReaderPaginationLabel="Pagination"
+      screenReaderPageLabel="page"
+      screenReaderCurrentLabel="You're on page"
+    >
+    </pagination-controls>
+  </div>
+</section>

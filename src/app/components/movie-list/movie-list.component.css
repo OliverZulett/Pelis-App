@@ -1,0 +1,81 @@
+.moviesSearched {
+  /* padding-top: 90px; */
+  z-index: 20;
+  /* background: linear-gradient(
+      90deg,
+      rgba(158, 61, 100, 1) 0%,
+      rgba(254, 94, 81, 1) 50%,
+      rgba(255, 181, 84, 1) 100%
+    );
+     */
+}
+
+.movie-card {
+  cursor: pointer;
+  display: flex;
+  height: 280px;
+  width: 200px;
+  /* background-color: #17141d; */
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, 0.95);
+  -moz-box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, 0.95);
+  box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, 0.95);
+  /*   margin-left: -50px; */
+  transition: 0.4s ease-out;
+  position: relative;
+  left: 0px;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.movie-card:not(:first-child) {
+  margin-left: -50px;
+}
+
+.movie-card:hover {
+  transform: translateY(-20px);
+  transition: 0.4s ease-out;
+}
+
+.movie-card:hover ~ .movie-card {
+  position: relative;
+  left: 50px;
+  transition: 0.4s ease-out;
+}
+
+.title {
+  color: white;
+  font-weight: 300;
+  position: absolute;
+  left: 20px;
+  top: 15px;
+}
+
+.search-pagination /deep/ .ngx-pagination a {
+  color: white;
+  border-radius: 60px;
+  border: 1px solid #c24a5d;
+}
+.search-pagination /deep/ .ngx-pagination .pagination-next a,
+.search-pagination /deep/ .ngx-pagination .pagination-previous a,
+.search-pagination /deep/ .ngx-pagination .ellipsis a {
+  border: 0px;
+}
+
+.search-pagination /deep/ .ngx-pagination .pagination-previous a:hover,
+.search-pagination /deep/ .ngx-pagination .pagination-next a:hover {
+  background: transparent;
+  text-decoration: none;
+}
+
+.search-pagination /deep/ .ngx-pagination a:hover,
+.ngx-pagination button:hover {
+  background: #ff8b53;
+  text-decoration: none;
+}
+
+.search-pagination /deep/ .ngx-pagination .current {
+  background: #e35557;
+  border-radius: 60px;
+}

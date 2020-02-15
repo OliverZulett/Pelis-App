@@ -1,0 +1,191 @@
+/* General styles */
+
+.navbar {
+  /* min-height: 70px; */
+  height: 95px;
+  text-transform: uppercase;
+  transition: all ease-in-out 500ms;
+  z-index: 100;
+}
+
+.navbar.expand {
+  /* min-height: 350px; */
+  height: 370px;
+}
+
+.navbar.extra-expand {
+  /* min-height: 350px; */
+  height: 820px;
+  border-bottom-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
+.navbar-brand {
+  color: #fff;
+  font-size: 2em;
+  font-family: "Fugaz One", cursive;
+}
+
+.navbar-nav .active > .nav-link {
+  font-size: larger;
+  font-weight: 500;
+  color: white !important;
+}
+
+.navbar-title {
+  text-transform: none;
+  font-size: 2.5em;
+}
+
+.raise {
+  --color: #ffdab3;
+  --hover: #eb6905;
+  padding: 0.6em 1em;
+}
+
+.raise:hover {
+  border-radius: 7px;
+}
+
+.whitout-color .menu-button {
+  font-size: 1.5em;
+  color: #ff9b00;
+  border: none;
+}
+
+/* Styles whitout color */
+
+.whitout-color .navbar-title {
+  background: -webkit-linear-gradient(left top, red, yellow);
+  background: linear-gradient(to bottom right, red, yellow);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.whitout-color .nav-link {
+  color: rgba(255, 184, 0, 0.84);
+}
+
+.whitout-color .movies-search-input {
+  background: transparent;
+  color: white;
+}
+
+.whitout-color .movie-search .movies-search-input:focus {
+  border-color: #c25908;
+  box-shadow: 0 0 0 0.2rem rgba(45, 45, 45, 0.25);
+}
+
+/* Styles with color */
+
+.whit-color {
+  background: linear-gradient(
+    90deg,
+    rgba(158, 61, 100, 1) 0%,
+    rgba(254, 94, 81, 1) 50%,
+    rgba(255, 181, 84, 1) 100%
+  );
+}
+
+.whit-color .nav-link {
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.whit-color .movie-search .movies-search-input:focus {
+  border-color: #ffffff;
+  box-shadow: 0 0 0 0.2rem rgb(255, 129, 82);
+}
+
+.whit-color .menu-button {
+  font-size: 1.5em;
+  color: #ffffff;
+  border: none;
+}
+
+/* Styles for search bar */
+
+.moviesSearched-container {
+  z-index: 20;
+}
+
+.close-search {
+  color: #ff7000;
+  border-radius: 60px;
+  padding: 2px;
+  height: 33px;
+  width: 33px;
+  font-size: 1em;
+}
+
+.button-container {
+  overflow: hidden;
+  width: 0px;
+  transition: all ease-in-out 0.5s;
+}
+
+.button-container.show {
+  width: 40px;
+}
+
+/* // Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+  .navbar.search-expand {
+    /* min-height: 350px; */
+    height: 450px;
+  }
+  .navbar.extra-expand {
+  /* min-height: 350px; */
+  height: 820px;
+}
+}
+
+/* // Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .navbar.search-expand {
+    /* min-height: 350px; */
+    height: 450px;
+  }
+  .navbar.extra-expand {
+  /* min-height: 350px; */
+  height: 820px;
+}
+}
+
+/* // Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .navbar.search-expand {
+    /* min-height: 350px; */
+    height: 450px;
+  }
+  .navbar.extra-expand {
+  /* min-height: 350px; */
+  height: 820px;
+}
+}
+
+/* // Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .navbar.search-expand {
+    /* min-height: 350px; */
+    height: 250px;
+  }
+  .navbar.extra-expand {
+    /* min-height: 350px; */
+    height: 525px;
+  }
+}
+
+/* // Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .w-lg-auto {
+    width: auto !important;
+  }
+  .navbar.search-expand {
+    /* min-height: 350px; */
+    height: 250px;
+  }
+  .navbar.extra-expand {
+    /* min-height: 350px; */
+    height: 525px;
+  }
+}

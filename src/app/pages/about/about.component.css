@@ -1,0 +1,12 @@
+.movie-container {
+  min-height: 100vh;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+h1 {
+  font-size: 10em;
+  font-family: "Alata", sans-serif;
+}

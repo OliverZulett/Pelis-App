@@ -1,0 +1,15 @@
+.btn-outline-success {
+  color: white;
+  border-color: #9e3d64;
+}
+
+.btn-outline-success:hover {
+  color: #fff;
+  background-color: #9e3d64;
+  border-color: #9e3d64;
+}
+
+.my-pagination /deep/ .ngx-pagination .current {
+  background: #fe8a52;
+  border-radius: 60px;
+}
