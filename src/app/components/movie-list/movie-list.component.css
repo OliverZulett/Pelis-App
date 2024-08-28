@@ -52,30 +52,30 @@
   top: 15px;
 }
 
-.search-pagination /deep/ .ngx-pagination a {
+.search-pagination ::ng-deep .ngx-pagination a {
   color: white;
   border-radius: 60px;
   border: 1px solid #c24a5d;
 }
-.search-pagination /deep/ .ngx-pagination .pagination-next a,
-.search-pagination /deep/ .ngx-pagination .pagination-previous a,
-.search-pagination /deep/ .ngx-pagination .ellipsis a {
+.search-pagination ::ng-deep .ngx-pagination .pagination-next a,
+.search-pagination ::ng-deep .ngx-pagination .pagination-previous a,
+.search-pagination ::ng-deep .ngx-pagination .ellipsis a {
   border: 0px;
 }
 
-.search-pagination /deep/ .ngx-pagination .pagination-previous a:hover,
-.search-pagination /deep/ .ngx-pagination .pagination-next a:hover {
+.search-pagination ::ng-deep .ngx-pagination .pagination-previous a:hover,
+.search-pagination ::ng-deep .ngx-pagination .pagination-next a:hover {
   background: transparent;
   text-decoration: none;
 }
 
-.search-pagination /deep/ .ngx-pagination a:hover,
+.search-pagination ::ng-deep .ngx-pagination a:hover,
 .ngx-pagination button:hover {
   background: #ff8b53;
   text-decoration: none;
 }
 
-.search-pagination /deep/ .ngx-pagination .current {
+.search-pagination ::ng-deep .ngx-pagination .current {
   background: #e35557;
   border-radius: 60px;
 }

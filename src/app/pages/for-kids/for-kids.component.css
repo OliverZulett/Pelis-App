@@ -9,7 +9,7 @@
   border-color: #9e3d64;
 }
 
-.my-pagination /deep/ .ngx-pagination .current {
+.my-pagination ::ng-deep .ngx-pagination .current {
   background: #fe8a52;
   border-radius: 60px;
 }
