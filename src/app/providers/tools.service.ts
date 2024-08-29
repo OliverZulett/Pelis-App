@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { map, concatMap, filter, first } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { from, Observable } from 'rxjs';
-import { async } from '@angular/core/testing';
 
 @Injectable({
   providedIn: 'root'
