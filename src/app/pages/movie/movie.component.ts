@@ -1,14 +1,19 @@
 import { Component } from '@angular/core';
 import { MoviesService } from 'src/app/providers/movies.service';
 import { ActivatedRoute } from '@angular/router';
+import { NgIf, NgClass, NgStyle, NgFor, CurrencyPipe, DatePipe } from '@angular/common';
+import { LoadingComponent } from '../../components/loading/loading.component';
+import { MovieListComponent } from '../../components/movie-list/movie-list.component';
 
 @Component({
-  selector: 'app-movie',
-  templateUrl: './movie.component.html',
-  styleUrls: [
-    './movie.component.css',
-    './rating.css'
-  ]
+    selector: 'app-movie',
+    templateUrl: './movie.component.html',
+    styleUrls: [
+        './movie.component.css',
+        './rating.css'
+    ],
+    standalone: true,
+    imports: [NgIf, NgClass, LoadingComponent, NgStyle, NgFor, MovieListComponent, CurrencyPipe, DatePipe]
 })
 export class MovieComponent {
 

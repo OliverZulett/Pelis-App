@@ -1,11 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { MoviesService } from 'src/app/providers/movies.service';
 import { ToolsService } from '../../providers/tools.service';
+import { NgIf, NgClass, NgFor } from '@angular/common';
+import { LoadingComponent } from '../../components/loading/loading.component';
+import { MovieBackgroundComponent } from '../../components/movie-background/movie-background.component';
+import { MovieCardComponent } from '../../components/movie-card/movie-card.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
-  selector: 'app-in-theatres',
-  templateUrl: './in-theatres.component.html',
-  styleUrls: ['./in-theatres.component.css']
+    selector: 'app-in-theatres',
+    templateUrl: './in-theatres.component.html',
+    styleUrls: ['./in-theatres.component.css'],
+    standalone: true,
+    imports: [NgIf, NgClass, LoadingComponent, MovieBackgroundComponent, NgFor, MovieCardComponent, NgxPaginationModule]
 })
 export class InTheatresComponent implements OnInit {
 

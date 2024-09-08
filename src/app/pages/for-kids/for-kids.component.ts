@@ -1,11 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { MoviesService } from '../../providers/movies.service';
 import { ToolsService } from '../../providers/tools.service';
+import { NgIf, NgClass, NgFor } from '@angular/common';
+import { LoadingComponent } from '../../components/loading/loading.component';
+import { MovieBackgroundComponent } from '../../components/movie-background/movie-background.component';
+import { MovieCardComponent } from '../../components/movie-card/movie-card.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
-  selector: 'app-for-kids',
-  templateUrl: './for-kids.component.html',
-  styleUrls: ['./for-kids.component.css']
+    selector: 'app-for-kids',
+    templateUrl: './for-kids.component.html',
+    styleUrls: ['./for-kids.component.css'],
+    standalone: true,
+    imports: [NgIf, NgClass, LoadingComponent, MovieBackgroundComponent, NgFor, MovieCardComponent, NgxPaginationModule]
 })
 export class ForKidsComponent implements OnInit {
 

@@ -1,15 +1,20 @@
 import { Component, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { MoviesService } from 'src/app/providers/movies.service';
-import { Router, RouterModule } from '@angular/router';
+import { Router, RouterModule, RouterLink, RouterLinkActive } from '@angular/router';
 import { faTrashAlt, faTimes, faBars } from '@fortawesome/free-solid-svg-icons';
+import { NgClass, NgIf } from '@angular/common';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
+import { MovieListComponent } from '../movie-list/movie-list.component';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: [
-    './navbar.component.css',
-    './hover.effect.link.css'
-  ]
+    selector: 'app-navbar',
+    templateUrl: './navbar.component.html',
+    styleUrls: [
+        './navbar.component.css',
+        './hover.effect.link.css'
+    ],
+    standalone: true,
+    imports: [NgClass, RouterLink, NgIf, FaIconComponent, RouterLinkActive, MovieListComponent]
 })
 export class NavbarComponent {
 

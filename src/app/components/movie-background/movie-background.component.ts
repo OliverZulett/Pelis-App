@@ -1,12 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgStyle } from '@angular/common';
 
 @Component({
-  selector: 'app-movie-background',
-  templateUrl: './movie-background.component.html',
-  styleUrls: [
-    './movie-background.component.css',
-    './scrollDown.css'
-  ]
+    selector: 'app-movie-background',
+    templateUrl: './movie-background.component.html',
+    styleUrls: [
+        './movie-background.component.css',
+        './scrollDown.css'
+    ],
+    standalone: true,
+    imports: [NgStyle]
 })
 export class MovieBackgroundComponent implements OnInit {
 

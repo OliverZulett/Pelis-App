@@ -15,29 +15,26 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [
-    NavbarComponent,
-    MovieCardComponent,
-    MovieListComponent,
-    FooterComponent,
-    MovieBackgroundComponent,
-    LoadingComponent,
-    TruncateTextPipe
-  ],
-  imports: [
-    AppRoutingModule,
-    CommonModule,
-    FontAwesomeModule,
-    NgxPaginationModule,
-    // RouterModule
-  ],
-  exports: [
-    NavbarComponent,
-    MovieCardComponent,
-    MovieListComponent,
-    FooterComponent,
-    MovieBackgroundComponent,
-    LoadingComponent
-  ]
+    imports: [
+        AppRoutingModule,
+        CommonModule,
+        FontAwesomeModule,
+        NgxPaginationModule,
+        NavbarComponent,
+        MovieCardComponent,
+        MovieListComponent,
+        FooterComponent,
+        MovieBackgroundComponent,
+        LoadingComponent,
+        TruncateTextPipe,
+    ],
+    exports: [
+        NavbarComponent,
+        MovieCardComponent,
+        MovieListComponent,
+        FooterComponent,
+        MovieBackgroundComponent,
+        LoadingComponent
+    ]
 })
 export class ComponentsModule { }

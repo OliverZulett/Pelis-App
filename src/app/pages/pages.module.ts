@@ -13,26 +13,24 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [
-    AboutComponent,
-    ForKidsComponent,
-    HomeComponent,
-    InTheatresComponent,
-    MovieComponent
-  ],
-  imports: [
-    AppRoutingModule,
-    CommonModule,
-    ComponentsModule,
-    NgxPaginationModule,
-    RouterModule
-  ],
-  exports: [
-    AboutComponent,
-    ForKidsComponent,
-    HomeComponent,
-    InTheatresComponent,
-    MovieComponent,
-  ]
+    imports: [
+        AppRoutingModule,
+        CommonModule,
+        ComponentsModule,
+        NgxPaginationModule,
+        RouterModule,
+        AboutComponent,
+        ForKidsComponent,
+        HomeComponent,
+        InTheatresComponent,
+        MovieComponent
+    ],
+    exports: [
+        AboutComponent,
+        ForKidsComponent,
+        HomeComponent,
+        InTheatresComponent,
+        MovieComponent,
+    ]
 })
 export class PagesModule { }
