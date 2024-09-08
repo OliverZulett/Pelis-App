@@ -10,7 +10,7 @@ export class MoviesService {
 
   // link to get an api key : https://www.themoviedb.org/settings/api
 
-  private apiKey = 'api_key=<your-api-key>';
+  private apiKey = 'api_key=165c91f06aa1ae4cd78b068637f216c1';
   private urlMovieDB = 'https://api.themoviedb.org/3';
   private url: string;
   private language = 'language=es';
