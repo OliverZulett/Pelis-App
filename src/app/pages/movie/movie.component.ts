@@ -1,132 +1,125 @@
-import { Component } from '@angular/core';
-import { MoviesService } from 'src/app/providers/movies.service';
-import { ActivatedRoute } from '@angular/router';
-import { NgIf, NgClass, NgStyle, NgFor, CurrencyPipe, DatePipe } from '@angular/common';
-import { LoadingComponent } from '../../components/loading/loading.component';
-import { MovieListComponent } from '../../components/movie-list/movie-list.component';
+import {
+  AfterViewInit,
+  Component,
+  inject,
+  OnChanges,
+  OnInit,
+  signal,
+  SimpleChanges,
+} from "@angular/core";
+import { Input as RouterInput } from "@angular/core";
+import { MoviesService } from "src/app/providers/movies.service";
+import { ActivatedRoute } from "@angular/router";
+import {
+  NgIf,
+  NgClass,
+  NgStyle,
+  NgFor,
+  CurrencyPipe,
+  DatePipe,
+  DOCUMENT,
+} from "@angular/common";
+import { LoadingComponent } from "../../components/loading/loading.component";
+import { MovieListComponent } from "../../components/movie-list/movie-list.component";
+import { MoviesServiceV2 } from "src/app/providers/movies-v2.service";
+import { switchMap, tap } from "rxjs/operators";
+import { EMPTY, of } from "rxjs";
 
 @Component({
-    selector: 'app-movie',
-    templateUrl: './movie.component.html',
-    styleUrls: [
-        './movie.component.css',
-        './rating.css'
-    ],
-    standalone: true,
-    imports: [NgIf, NgClass, LoadingComponent, NgStyle, NgFor, MovieListComponent, CurrencyPipe, DatePipe]
+  selector: "app-movie",
+  templateUrl: "./movie.component.html",
+  styleUrls: ["./movie.component.css", "./rating.css"],
+  standalone: true,
+  imports: [
+    NgIf,
+    NgClass,
+    LoadingComponent,
+    NgStyle,
+    NgFor,
+    MovieListComponent,
+    CurrencyPipe,
+    DatePipe,
+  ],
 })
-export class MovieComponent {
-
-  private date: Date;
-  movie: any = {};
-  loading: boolean;
-  hideLoading: boolean;
-  backgroundUrl: string;
-  dataCharged: boolean;
-  collection: any = {};
-  showLink: boolean;
-  showRevenue: boolean;
-  showOverview: boolean;
-  showGenres: boolean;
-  showRunTime: boolean;
-  showTagLine: boolean;
-  showCollection: boolean;
+export class MovieComponent implements OnChanges {
+  @RouterInput() id: string;
 
   colors: any = {
-    'Acción': 'badge-primary',
-    'Animación' : 'badge-secondary',
-    'Aventura' : 'badge-success',
-    'Bélica' : 'badge-danger',
-    'Ciencia ficción' : 'badge-warning',
-    'Comedia' : 'badge-info',
-    'Crimen' : 'badge-light',
-    'Documental' : 'badge-light',
-    'Drama' : 'badge-dark',
-    'Familia' : 'badge-primary',
-    'Fantasía' : 'badge-secondary',
-    'Historia' : 'badge-success',
-    'Misterio' : 'badge-danger',
-    'Música' : 'badge-warning',
-    'Película de TV' : 'badge-info',
-    'Romance' : 'badge-light',
-    'Suspense' : 'badge-dark',
-    'Terror' : 'badge-primary',
-    'Western' : 'badge-secondary'
+    Acción: "badge-primary",
+    Animación: "badge-secondary",
+    Aventura: "badge-success",
+    Bélica: "badge-danger",
+    "Ciencia ficción": "badge-warning",
+    Comedia: "badge-info",
+    Crimen: "badge-light",
+    Documental: "badge-light",
+    Drama: "badge-dark",
+    Familia: "badge-primary",
+    Fantasía: "badge-secondary",
+    Historia: "badge-success",
+    Misterio: "badge-danger",
+    Música: "badge-warning",
+    "Película de TV": "badge-info",
+    Romance: "badge-light",
+    Suspense: "badge-dark",
+    Terror: "badge-primary",
+    Western: "badge-secondary",
   };
 
-  constructor(
-    private mS: MoviesService,
-    private router: ActivatedRoute
-  ) {
-    this.loading = true;
-    this.hideLoading = false;
-    this.router.params
-    .subscribe( param => {
-      this.mS.getMovie( param.id )
-        .subscribe( movie => {
-          this.movie = movie;
-          this.constructContent();
-          this.getCollection();
-          this.setBackground();
-          this.dataCharged = true;
-          this.removeLoading();
-        });
-    });
-  }
+  $movie = signal(null);
+  $backgroundUrl = signal("");
+  $collection = signal([]);
+  $showLoader = signal(true);
+  $hideLoading = signal(false);
 
-  private constructContent() {
-    this.showLink = this.homePageVerify(this.movie.homepage);
-    this.showRevenue = this.revenueVerify(this.movie.revenue);
-    this.showOverview = this.overviewVerify(this.movie.overview);
-    this.showGenres = this.genreVerify(this.movie.genres);
-    this.showRunTime = this.runTimeVerify(this.movie.runtime);
-    this.showTagLine = this.tagLineVerify(this.movie.tagline);
-  }
+  private readonly moviesService = inject(MoviesServiceV2);
+  private readonly document = inject(DOCUMENT);
+  private readonly window = this.document.defaultView;
 
-  private async getCollection() {
-    if (this.collectionVerify(this.movie.belongs_to_collection)) {
-      this.collection = await this.mS.getCollection( this.movie.belongs_to_collection.id);
-      this.showCollection = true;
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.id) {
+      const { currentValue: movieId } = changes.id;
+      this.$hideLoading.set(false);
+      this.$showLoader.set(true);
+      this.scrollToTop();
+      this.moviesService
+        .getMovie(movieId)
+        .pipe(
+          tap((movie) => this.$movie.set(movie)),
+          tap((movie) => {
+            this.$backgroundUrl.set(
+              `https://image.tmdb.org/t/p/original${movie.backdrop_path}`
+            );
+          }),
+          switchMap((movie) => {
+            return movie.belongs_to_collection
+              ? this.moviesService.getMovieCollection(
+                  movie.belongs_to_collection.id
+                )
+              : of(EMPTY);
+          }),
+          tap((collectionResponse) => {
+            if (
+              collectionResponse &&
+              typeof collectionResponse === "object" &&
+              "parts" in collectionResponse
+            ) {
+              this.$collection.set(collectionResponse.parts);
+            }
+          })
+        )
+        .subscribe();
     }
   }
 
-  private setBackground() {
-    this.backgroundUrl = 'https://image.tmdb.org/t/p/original' + this.movie.backdrop_path;
-  }
-
-  private removeLoading() {
-    this.hideLoading = true;
+  removeLoading() {
+    this.$hideLoading.set(true);
     setTimeout(() => {
-      this.loading = false;
-    }, 3000);
+      this.$showLoader.set(false);
+    }, 2000);
   }
 
-  private homePageVerify( link: string ) {
-    return link.length > 0 ? true : false;
+  private scrollToTop() {
+    this.window.scrollTo({ top: 0, behavior: "smooth" });
   }
-
-  private revenueVerify( revenue: number ) {
-    return revenue > 0 ? true : false;
-  }
-
-  private overviewVerify( overview: string ) {
-    return overview.length > 0 ? true : false;
-  }
-
-  private genreVerify( genres: any[] ) {
-    return genres.length > 0 ? true : false;
-  }
-
-  private runTimeVerify( runtime: number ) {
-    return runtime > 0 ? true : false;
-  }
-
-  private tagLineVerify( tagline: string ) {
-    return tagline.length > 0 ? true : false;
-  }
-
-  private collectionVerify( collection: any ) {
-    return collection ? true : false;
-  }
-
 }

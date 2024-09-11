@@ -50,11 +50,13 @@ export class ToolsService {
   }
 
   public setBackground( movies: any ) {
-    if (movies && movies.length > 0 && movies !== undefined ) {
+    const defaultImage = 'assets/img/background-default.jpg'
+    if (movies && movies.length > 0) {
       const backgroundPosition = Math.floor(Math.random() * (movies.length - 0 + 1) + 0);
-      return 'https://image.tmdb.org/t/p/original' + movies[backgroundPosition].backdrop_path;
+      const backgroundPath = movies[backgroundPosition]?.backdrop_path;
+      return backgroundPath ? `https://image.tmdb.org/t/p/original${backgroundPath}` : defaultImage;
     } else {
-      return 'assets/img/background-default.jpg';
+      return defaultImage;
     }
   }
 

@@ -13,3 +13,7 @@
   background: #fe8a52;
   border-radius: 60px;
 }
+
+.raise:hover {
+  color: orange;
+}

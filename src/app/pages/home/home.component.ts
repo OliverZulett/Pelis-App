@@ -1,60 +1,77 @@
-import { Component, OnInit } from '@angular/core';
-import { MoviesService } from '../../providers/movies.service';
-import { ToolsService } from '../../providers/tools.service';
-import { NgIf, NgClass, NgFor } from '@angular/common';
-import { LoadingComponent } from '../../components/loading/loading.component';
-import { MovieBackgroundComponent } from '../../components/movie-background/movie-background.component';
-import { MovieCardComponent } from '../../components/movie-card/movie-card.component';
-import { NgxPaginationModule } from 'ngx-pagination';
+import {
+  Component,
+  inject,
+  OnDestroy,
+  OnInit,
+  signal,
+} from "@angular/core";
+import { ToolsService } from "../../providers/tools.service";
+import { CommonModule, DOCUMENT } from "@angular/common";
+import { LoadingComponent } from "../../components/loading/loading.component";
+import { MovieBackgroundComponent } from "../../components/movie-background/movie-background.component";
+import { MovieCardComponent } from "../../components/movie-card/movie-card.component";
+import { MoviesServiceV2 } from "src/app/providers/movies-v2.service";
+import { takeUntil, tap } from "rxjs/operators";
+import { Subject } from "rxjs";
 
 @Component({
-    selector: 'app-home',
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.css'],
-    standalone: true,
-    imports: [NgIf, NgClass, LoadingComponent, MovieBackgroundComponent, NgFor, MovieCardComponent, NgxPaginationModule]
+  selector: "app-home",
+  templateUrl: "./home.component.html",
+  styleUrls: ["./home.component.css"],
+  standalone: true,
+  imports: [
+    LoadingComponent,
+    MovieBackgroundComponent,
+    MovieCardComponent,
+    CommonModule,
+  ],
 })
-export class HomeComponent implements OnInit {
-
-  loading: boolean;
-  hideLoading: boolean;
-  dataCharged: boolean;
-  movies: any[];
-  backgroundUrl: string;
+export class HomeComponent implements OnInit, OnDestroy {
   messagesBackground: string[] = [
-    'las peliculas que amas',
-    'nuevas peliculas',
-    'las peliculas en cartelera',
-    'las mejores peliculas para niños'
+    "las peliculas que amas",
+    "nuevas peliculas",
+    "las peliculas en cartelera",
+    "las mejores peliculas para niños",
   ];
-  p: number = 1;
 
-  constructor(
-    private mS: MoviesService,
-    private tS: ToolsService
-  ) {
-    this.movies = [];
-    this.loading = true;
-    this.hideLoading = false;
-    this.dataCharged = false;
+  $movies = signal([]);
+  $backgroundUrl = signal("");
+  $pagination = signal(null);
+
+  private moviesService = inject(MoviesServiceV2);
+  private toolService = inject(ToolsService);
+  private document = inject(DOCUMENT);
+  private window = this.document.defaultView;
+
+  private destroy$ = new Subject();
+
+  ngOnInit() {
+    this.loadMovies();
   }
 
-  async ngOnInit() {
-    await this.getPetition();
-    this.backgroundUrl = this.tS.setBackground( this.movies );
-    this.removeLoading();
+  loadMovies(page = 1) {
+    this.moviesService
+      .getPopular(page)
+      .pipe(
+        takeUntil(this.destroy$),
+        tap(() =>
+          this.$pagination.set(JSON.parse(sessionStorage.getItem("pagination")))
+        ),
+        tap((movies) =>
+          this.$backgroundUrl.set(this.toolService.setBackground(movies))
+        ),
+        tap((movies) => this.$movies.set(movies)),
+        tap(() => this.scrollToTop())
+      )
+      .subscribe();
   }
 
-  private async getPetition() {
-    this.movies = await this.mS.getPopulars();
-    this.dataCharged = true;
+  private scrollToTop() {
+    this.window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  private removeLoading() {
-    this.hideLoading = true;
-    setTimeout(() => {
-      this.loading = false;
-    }, 3000);
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
-
 }

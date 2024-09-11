@@ -1,20 +1,18 @@
-import { Component } from '@angular/core';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { RouterOutlet } from '@angular/router';
-import { FooterComponent } from './components/footer/footer.component';
+import { Component, inject } from "@angular/core";
+import { NavbarComponent } from "./components/navbar/navbar.component";
+import { RouterOutlet } from "@angular/router";
+import { FooterComponent } from "./components/footer/footer.component";
+import { MoviesServiceV2 } from "./providers/movies-v2.service";
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css'],
-    standalone: true,
-    imports: [NavbarComponent, RouterOutlet, FooterComponent]
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"],
+  standalone: true,
+  imports: [NavbarComponent, RouterOutlet, FooterComponent],
 })
 export class AppComponent {
-
-  // this method put scroll on top of page in navigation
-
-  onActivate( event: any ) {
+  onActivate(event: any) {
     const scrollToTop = window.setInterval(() => {
       const pos = window.pageYOffset;
       if (pos > 0) {
@@ -24,5 +22,4 @@ export class AppComponent {
       }
     }, 16);
   }
-
 }

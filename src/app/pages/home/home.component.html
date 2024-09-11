@@ -1,57 +1,42 @@
-<div 
-  *ngIf="loading" 
-  class="loading-content"
-  [ngClass]="{'hide': hideLoading}"
->
-    <app-loading ></app-loading>
+@if ($movies().length === 0) {
+<div class="loading-content">
+  <app-loading></app-loading>
 </div>
+}
 
-<app-movie-background 
-  *ngIf="dataCharged" 
-  [backgroundImage]="backgroundUrl"
-  [backgroundMessage]="messagesBackground"
->
+@if ($movies()) {
+<app-movie-background [backgroundImage]="$backgroundUrl()" [backgroundMessage]="messagesBackground">
 </app-movie-background>
+}
 
-<section 
-  *ngIf="dataCharged"
-  class="container"
->
-  <div class="mt-5">
+@if ($movies()) {
+<section class="">
+  <div class="mt-5 ml-5 mr-5">
     <h1 class="display-2 rellax">Pelis App</h1>
     <p><em>Desarrollado por Oliver Zulett</em></p>
     <p class="lead">
-        Pelis app es una aplicacion desarrollada en angular que consume la rest api de <a href="">The Movie DB</a>
-        para mostrarte las peliculas que estan en cartelera, las peliculas mas populares del momento y las mas
-        populares entre los niños.
+      Pelis app es una aplicacion desarrollada en angular que consume la rest api de <a href="">The Movie DB</a>
+      para mostrarte las peliculas que estan en cartelera, las peliculas mas populares del momento y las mas
+      populares entre los niños.
     </p>
   </div>
-  <div *ngIf="dataCharged" class="mt-5 mb-5">
+  <div class="mt-5 mb-5">
     <div class="d-flex flex-wrap justify-content-center">
-      <!-- *ngIf="dataCharged" -->
-      <app-movie-card 
-          *ngFor="let movie of movies | paginate: { itemsPerPage: 9, currentPage: p }"
-          class="d-flex justify-content-center"
-          [movieObject]="movie"
-      >
-      </app-movie-card>
+      @for (movie of $movies(); track $index) {
+        <app-movie-card class="d-flex justify-content-center" [movieObject]="movie">
+        </app-movie-card>
+      }
     </div>
   </div>
-  <div class="mt-5 mb-5 d-flex justify-content-center">
-    <pagination-controls 
-      class="my-pagination"
-      (pageChange)="p = $event"
-      (pageBoundsCorrection)="p = $event"
-      maxSize="5"
-      directionLinks="true"
-      autoHide="true"
-      responsive="true"
-      previousLabel=""
-      nextLabel=""
-      screenReaderPaginationLabel="Pagination"
-      screenReaderPageLabel="page"
-      screenReaderCurrentLabel="You're on page"
-    >
-    </pagination-controls>
+  @if ($pagination()) {
+  <div class="d-flex justify-content-center mb-5">
+    @if ($pagination().page > 1) {
+    <button (click)="loadMovies($pagination().page - 1)" class="raise">ANTERIOR</button>
+    }
+    @if ($pagination().page < $pagination().total_pages) { 
+      <button (click)="loadMovies($pagination().page + 1)"class="raise">SIGUIENTE</button>
+    }
   </div>
+  }
 </section>
+}
