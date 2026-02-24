@@ -8,8 +8,6 @@ import {
   SimpleChanges,
 } from "@angular/core";
 import { Input as RouterInput } from "@angular/core";
-import { MoviesService } from "src/app/providers/movies.service";
-import { ActivatedRoute } from "@angular/router";
 import {
   NgIf,
   NgClass,

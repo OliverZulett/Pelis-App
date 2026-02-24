@@ -1,5 +1,4 @@
 import { Component, inject, OnDestroy, OnInit, signal } from "@angular/core";
-import { MoviesService } from "../../providers/movies.service";
 import { ToolsService } from "../../providers/tools.service";
 import { NgIf, NgClass, NgFor, DOCUMENT } from "@angular/common";
 import { LoadingComponent } from "../../components/loading/loading.component";

@@ -16,18 +16,18 @@ export class MoviesServiceV2 extends BaseService {
 
   getMovie(movieId: string): Observable<MovieResponse> {
     return this.get<MovieResponse>(
-      `${environment.api_url}/movie/${movieId}?language=es-ES`
+      `${environment.api_url}/movie/${movieId}?language=es-ES`,
     ).pipe(
       catchError((err) => {
         console.error("Error fetching now playing movies", err);
         return of(null);
-      })
+      }),
     );
   }
 
   getNowPlaying(page = 1): Observable<MovieItem[]> {
     return this.get<MoviesResponse>(
-      `${environment.api_url}/movie/now_playing?language=es-ES&page=${page}`
+      `${environment.api_url}/movie/now_playing?language=es-ES&page=${page}`,
     ).pipe(
       tap((moviesResponse) => {
         const pagination = {
@@ -41,18 +41,18 @@ export class MoviesServiceV2 extends BaseService {
       catchError((err) => {
         console.error("Error fetching now playing movies", err);
         return of([]);
-      })
+      }),
     );
   }
 
   getMovieCollection(collectionId: number): Observable<CollectionResponse> {
     return this.get<CollectionResponse>(
-      `${environment.api_url}/collection/${collectionId}?language=es-ES`
+      `${environment.api_url}/collection/${collectionId}?language=es-ES`,
     ).pipe(
       catchError((err) => {
         console.error("Error fetching collections", err);
         return of(null);
-      })
+      }),
     );
   }
 
@@ -70,7 +70,7 @@ export class MoviesServiceV2 extends BaseService {
     ];
 
     return this.get<MoviesResponse>(
-      `${environment.api_url}/${resource}?&${parameters.join("&")}`
+      `${environment.api_url}/${resource}?&${parameters.join("&")}`,
     ).pipe(
       tap((moviesResponse) => {
         const pagination = {
@@ -84,7 +84,7 @@ export class MoviesServiceV2 extends BaseService {
       catchError((err) => {
         console.error("Error fetching popular movies", err);
         return of([]);
-      })
+      }),
     );
   }
 
@@ -105,7 +105,7 @@ export class MoviesServiceV2 extends BaseService {
     ];
 
     return this.get<MoviesResponse>(
-      `${environment.api_url}/${resource}?&${parameters.join("&")}`
+      `${environment.api_url}/${resource}?&${parameters.join("&")}`,
     ).pipe(
       tap((moviesResponse) => {
         const pagination = {
@@ -119,7 +119,44 @@ export class MoviesServiceV2 extends BaseService {
       catchError((err) => {
         console.error("Error fetching popular movies", err);
         return of([]);
-      })
+      }),
+    );
+  }
+
+  searchMovies(parameter: string, page = 1) {
+    const resource = "search/movie";
+
+    const parameters = [
+      `sort_by=primary_release_date.desc`,
+      `language=es-ES`,
+      `certification_country=US`,
+      `certification=G`,
+      `vote_average.gte=6.0`,
+      `release_date.gte=1990-01-01`,
+      `release_date.lte=${this.toolsService.getDateRange(new Date())}`,
+      `vote_count.gte=1000`,
+      `with_original_language=en`,
+      `region=US`,
+      `page=${page}`,
+      `query=${parameter}`,
+    ];
+
+    return this.get<MoviesResponse>(
+      `${environment.api_url}/${resource}?&${parameters.join("&")}`,
+    ).pipe(
+      tap((moviesResponse) => {
+        const pagination = {
+          total_results: moviesResponse.total_results,
+          page: moviesResponse.page,
+          total_pages: moviesResponse.total_pages,
+        };
+        sessionStorage.setItem("pagination", JSON.stringify(pagination));
+      }),
+      map((moviesResponse) => moviesResponse.results),
+      catchError((err) => {
+        console.error("Error fetching popular movies", err);
+        return of([]);
+      }),
     );
   }
 }
