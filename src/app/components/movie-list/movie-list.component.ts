@@ -7,7 +7,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
     selector: 'app-movie-list',
     templateUrl: './movie-list.component.html',
     styleUrls: ['./movie-list.component.css'],
-    standalone: true,
     imports: [NgIf, NgFor, NgStyle, NgxPaginationModule]
 })
 export class MovieListComponent {

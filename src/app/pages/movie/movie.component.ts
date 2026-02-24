@@ -24,20 +24,19 @@ import { switchMap, tap } from "rxjs/operators";
 import { EMPTY, of } from "rxjs";
 
 @Component({
-  selector: "app-movie",
-  templateUrl: "./movie.component.html",
-  styleUrls: ["./movie.component.css", "./rating.css"],
-  standalone: true,
-  imports: [
-    NgIf,
-    NgClass,
-    LoadingComponent,
-    NgStyle,
-    NgFor,
-    MovieListComponent,
-    CurrencyPipe,
-    DatePipe,
-  ],
+    selector: "app-movie",
+    templateUrl: "./movie.component.html",
+    styleUrls: ["./movie.component.css", "./rating.css"],
+    imports: [
+        NgIf,
+        NgClass,
+        LoadingComponent,
+        NgStyle,
+        NgFor,
+        MovieListComponent,
+        CurrencyPipe,
+        DatePipe,
+    ]
 })
 export class MovieComponent implements OnChanges {
   @RouterInput() id: string;

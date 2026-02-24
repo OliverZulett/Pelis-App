@@ -15,16 +15,15 @@ import { takeUntil, tap } from "rxjs/operators";
 import { Subject } from "rxjs";
 
 @Component({
-  selector: "app-home",
-  templateUrl: "./home.component.html",
-  styleUrls: ["./home.component.css"],
-  standalone: true,
-  imports: [
-    LoadingComponent,
-    MovieBackgroundComponent,
-    MovieCardComponent,
-    CommonModule,
-  ],
+    selector: "app-home",
+    templateUrl: "./home.component.html",
+    styleUrls: ["./home.component.css"],
+    imports: [
+        LoadingComponent,
+        MovieBackgroundComponent,
+        MovieCardComponent,
+        CommonModule,
+    ]
 })
 export class HomeComponent implements OnInit, OnDestroy {
   messagesBackground: string[] = [

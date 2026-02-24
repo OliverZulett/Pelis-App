@@ -10,15 +10,14 @@ import { Subject } from "rxjs";
 import { takeUntil, tap } from "rxjs/operators";
 
 @Component({
-  selector: "app-in-theatres",
-  templateUrl: "./in-theatres.component.html",
-  styleUrls: ["./in-theatres.component.css"],
-  standalone: true,
-  imports: [
-    LoadingComponent,
-    MovieBackgroundComponent,
-    MovieCardComponent,
-  ],
+    selector: "app-in-theatres",
+    templateUrl: "./in-theatres.component.html",
+    styleUrls: ["./in-theatres.component.css"],
+    imports: [
+        LoadingComponent,
+        MovieBackgroundComponent,
+        MovieCardComponent,
+    ]
 })
 export class InTheatresComponent implements OnInit {
   messagesBackground: string[] = [

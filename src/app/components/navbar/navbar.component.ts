@@ -10,19 +10,18 @@ import { Observable, of } from "rxjs";
 import { map, shareReplay } from "rxjs/operators";
 
 @Component({
-  selector: "app-navbar",
-  templateUrl: "./navbar.component.html",
-  styleUrls: ["./navbar.component.css", "./hover.effect.link.css"],
-  standalone: true,
-  imports: [
-    CommonModule,
-    NgClass,
-    RouterLink,
-    NgIf,
-    FaIconComponent,
-    RouterLinkActive,
-    MovieListComponent,
-  ],
+    selector: "app-navbar",
+    templateUrl: "./navbar.component.html",
+    styleUrls: ["./navbar.component.css", "./hover.effect.link.css"],
+    imports: [
+        CommonModule,
+        NgClass,
+        RouterLink,
+        NgIf,
+        FaIconComponent,
+        RouterLinkActive,
+        MovieListComponent,
+    ]
 })
 export class NavbarComponent {
   onSearch = false;

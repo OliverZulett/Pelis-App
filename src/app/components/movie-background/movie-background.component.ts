@@ -8,7 +8,6 @@ import { NgStyle } from '@angular/common';
         './movie-background.component.css',
         './scrollDown.css'
     ],
-    standalone: true,
     imports: [NgStyle]
 })
 export class MovieBackgroundComponent implements OnInit {

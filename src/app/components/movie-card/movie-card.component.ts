@@ -7,7 +7,6 @@ import { TruncateTextPipe } from '../../pipes/truncate-text.pipe';
     selector: 'app-movie-card',
     templateUrl: './movie-card.component.html',
     styleUrls: ['./movie-card.component.css'],
-    standalone: true,
     imports: [NgStyle, DatePipe, TruncateTextPipe]
 })
 export class MovieCardComponent {

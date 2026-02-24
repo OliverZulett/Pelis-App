@@ -5,7 +5,6 @@ import { NgStyle } from '@angular/common';
     selector: 'app-about',
     templateUrl: './about.component.html',
     styleUrls: ['./about.component.css'],
-    standalone: true,
     imports: [NgStyle]
 })
 export class AboutComponent {

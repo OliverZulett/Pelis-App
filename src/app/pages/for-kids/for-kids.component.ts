@@ -1,6 +1,6 @@
 import { Component, inject, OnDestroy, OnInit, signal } from "@angular/core";
 import { ToolsService } from "../../providers/tools.service";
-import { NgIf, NgClass, NgFor, DOCUMENT } from "@angular/common";
+import { NgIf, NgClass, NgFor, DOCUMENT, CommonModule } from "@angular/common";
 import { LoadingComponent } from "../../components/loading/loading.component";
 import { MovieBackgroundComponent } from "../../components/movie-background/movie-background.component";
 import { MovieCardComponent } from "../../components/movie-card/movie-card.component";
@@ -13,13 +13,10 @@ import { takeUntil, tap } from "rxjs/operators";
   selector: "app-for-kids",
   templateUrl: "./for-kids.component.html",
   styleUrls: ["./for-kids.component.css"],
-  standalone: true,
   imports: [
-    NgIf,
-    NgClass,
+    CommonModule,
     LoadingComponent,
     MovieBackgroundComponent,
-    NgFor,
     MovieCardComponent,
     NgxPaginationModule,
   ],
@@ -53,13 +50,15 @@ export class ForKidsComponent implements OnInit, OnDestroy {
       .pipe(
         takeUntil(this.destroy$),
         tap(() =>
-          this.$pagination.set(JSON.parse(sessionStorage.getItem("pagination")))
+          this.$pagination.set(
+            JSON.parse(sessionStorage.getItem("pagination")),
+          ),
         ),
         tap((movies) =>
-          this.$backgroundUrl.set(this.toolService.setBackground(movies))
+          this.$backgroundUrl.set(this.toolService.setBackground(movies)),
         ),
         tap((movies) => this.$movies.set(movies)),
-        tap(() => this.scrollToTop())
+        tap(() => this.scrollToTop()),
       )
       .subscribe();
   }
