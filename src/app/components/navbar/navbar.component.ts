@@ -7,7 +7,7 @@ import { MovieListComponent } from "../movie-list/movie-list.component";
 import { MoviesServiceV2 } from "src/app/providers/movies-v2.service";
 import { MovieItem } from "src/app/interfaces";
 import { Observable, of } from "rxjs";
-import { map } from "rxjs/operators";
+import { map, shareReplay } from "rxjs/operators";
 
 @Component({
   selector: "app-navbar",
@@ -71,6 +71,7 @@ export class NavbarComponent {
           this.loadingResults = false;
           return movies;
         }),
+        shareReplay(1),
       );
     }
   }
