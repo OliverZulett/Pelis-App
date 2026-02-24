@@ -3,7 +3,7 @@ import { BaseService } from "./base.service";
 import { environment } from "src/environments/environment";
 import { MovieItem, MoviesResponse } from "../interfaces";
 import { Observable, of } from "rxjs";
-import { catchError, map, tap } from "rxjs/operators";
+import { catchError, filter, map, tap } from "rxjs/operators";
 import { ToolsService } from "./tools.service";
 import { MovieResponse } from "../interfaces/movie.response";
 import { CollectionResponse } from "../interfaces/collection.response";
@@ -153,6 +153,7 @@ export class MoviesServiceV2 extends BaseService {
         sessionStorage.setItem("pagination", JSON.stringify(pagination));
       }),
       map((moviesResponse) => moviesResponse.results),
+      map((movies) => movies.filter((movie) => movie.backdrop_path !== null)),
       catchError((err) => {
         console.error("Error fetching popular movies", err);
         return of([]);
