@@ -1,6 +1,6 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal, DOCUMENT } from "@angular/core";
 import { ToolsService } from "../../providers/tools.service";
-import { NgIf, NgClass, NgFor, DOCUMENT } from "@angular/common";
+import { NgIf, NgClass, NgFor } from "@angular/common";
 import { LoadingComponent } from "../../components/loading/loading.component";
 import { MovieBackgroundComponent } from "../../components/movie-background/movie-background.component";
 import { MovieCardComponent } from "../../components/movie-card/movie-card.component";

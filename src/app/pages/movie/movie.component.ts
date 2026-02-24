@@ -6,6 +6,7 @@ import {
   OnInit,
   signal,
   SimpleChanges,
+  DOCUMENT
 } from "@angular/core";
 import { Input as RouterInput } from "@angular/core";
 import {
@@ -14,8 +15,7 @@ import {
   NgStyle,
   NgFor,
   CurrencyPipe,
-  DatePipe,
-  DOCUMENT,
+  DatePipe
 } from "@angular/common";
 import { LoadingComponent } from "../../components/loading/loading.component";
 import { MovieListComponent } from "../../components/movie-list/movie-list.component";
