@@ -1,132 +1,142 @@
 <!-- [ngClass]="{'fixed-top': !onSearch}" -->
-<nav 
+<nav
   #navbar
   class="navbar navbar-expand-lg pl-5 pr-5 pt-3 pb-3 fixed-top animated fast d-flex flex-row flex-lg-column"
   [ngClass]="{'whit-color': whitColor, 'whitout-color': !whitColor, 'expand': !miniMenu, 'search-expand': onSearch, 'extra-expand': (movies | async)?.length > 0}"
->
+  >
   <div class="d-flex justify-content-between flex-column flex-lg-row w-100">
     <div class="d-flex justify-content-between w-100 w-lg-auto">
-      <a 
+      <a
         #title
         class="navbar-brand effect-shine navbar-title"
         (click)="clearSearch()"
         [routerLink]="['home']"
-      >
+        >
         Pelis App
       </a>
-      <button 
+      <button
         class="menu-button effect-shine m-0 p-1 mr-2 d-lg-none"
         (click)="toggleMiniMenu()"
-      >
-        <fa-icon *ngIf="miniMenu" [icon]="menuIconOpen"></fa-icon>
-        <fa-icon *ngIf="!miniMenu" [icon]="menuIconClose"></fa-icon>
+        >
+        @if (miniMenu) {
+          <fa-icon [icon]="menuIconOpen"></fa-icon>
+        }
+        @if (!miniMenu) {
+          <fa-icon [icon]="menuIconClose"></fa-icon>
+        }
       </button>
     </div>
     <div
       class="navbar-collapse animated fast"
       [ngClass]="{'collapse': miniMenu, 'slideInDown': !miniMenu}"
-    >
+      >
       <ul class="navbar-nav ml-auto mr-3">
-        <li 
+        <li
           routerLinkActive="active"
           class="nav-item"
-        >
-          <a 
+          >
+          <a
             class="nav-link effect-shine"
             (click)="clearSearch()"
             [routerLink]="['home']"
-          >
+            >
             Populares
           </a>
         </li>
-        <li 
+        <li
           routerLinkActive="active"
           class="nav-item"
-        >
-          <a 
+          >
+          <a
             class="nav-link effect-shine"
             (click)="clearSearch()"
             [routerLink]="['in-theatres']"
-          >
+            >
             Cartelera
           </a>
         </li>
-        <li 
+        <li
           routerLinkActive="active"
           class="nav-item"
-        >
-          <a 
+          >
+          <a
             class="nav-link effect-shine"
             (click)="clearSearch()"
             [routerLink]="['for-kids']"
-          >
+            >
             Para niños
           </a>
         </li>
-        <li 
+        <li
           routerLinkActive="active"
           class="nav-item"
-        >
-          <a 
+          >
+          <a
             class="nav-link effect-shine"
             (click)="clearSearch()"
             [routerLink]="['about']"
-          >
+            >
             Acerca de
           </a>
         </li>
       </ul>
-      <div 
+      <div
         class="movie-search search-form form-inline mt-2 mt-md-0"
-      >
-        <input 
+        >
+        <input
           #term
-          class="form-control mr-sm-2 movies-search-input" 
-          type="text" 
-          placeholder="Busca tu pelicula" 
+          class="form-control mr-sm-2 movies-search-input"
+          type="text"
+          placeholder="Busca tu pelicula"
           aria-label="Search"
           (keyup)="clearSearch()"
-        >
-        <!-- *ngIf="onSearch" -->
-        <div 
-          class="button-container"
-          [ngClass]="{'show': onSearch}"
-        >
-          <button 
-            class="close-search m-0"
-            (click)="clearSearch()"
           >
-            <!-- <i class="fa fa-trash-alt"></i> -->
-            <fa-icon [icon]="iconTrash"></fa-icon>
-          </button>
+          <!-- *ngIf="onSearch" -->
+          <div
+            class="button-container"
+            [ngClass]="{'show': onSearch}"
+            >
+            <button
+              class="close-search m-0"
+              (click)="clearSearch()"
+              >
+              <!-- <i class="fa fa-trash-alt"></i> -->
+              <fa-icon [icon]="iconTrash"></fa-icon>
+            </button>
+          </div>
         </div>
+        <button
+          #button
+          (click)="searchMovie(term.value)"
+          class="raise"
+          >
+          Buscar
+        </button>
+
       </div>
-      <button 
-        #button
-        (click)="searchMovie(term.value)"
-        class="raise"
-      >
-        Buscar
-      </button>
-  
     </div>
-  </div>
-  <div 
-    class="moviesSearched-container overflow-auto w-100 pl-lg-5 pr-lg-5 animated slideInRight slow"
-    *ngIf="onSearch"
-  >
-    <div *ngIf="loadingResults" >
-      <h1 class="text-light" >Cargando ...</h1>
-    </div>
-    <div *ngIf="noResults" >
-      <h1 class="text-light" >No hay resultados </h1>
-    </div>
-    <app-movie-list
-      *ngIf="!noResults"
-      [moviesObject]="movies | async" 
-      [pagination]="true" 
-      [resultsPerPage]="ResultsNumber" 
-      (goHomeResponse)="checkGoHomeResponse($event)"
-    ></app-movie-list>
-  </div>
-</nav>
+    @if (onSearch) {
+      <div
+        class="moviesSearched-container overflow-auto w-100 pl-lg-5 pr-lg-5 animated slideInRight slow"
+        >
+        @if (loadingResults) {
+          <div >
+            <h1 class="text-light" >Cargando ...</h1>
+          </div>
+        }
+        @if (noResults) {
+          <div >
+            <h1 class="text-light" >No hay resultados </h1>
+          </div>
+        }
+        @if (!noResults) {
+          <app-movie-list
+            [moviesObject]="movies | async"
+            [pagination]="true"
+            [resultsPerPage]="ResultsNumber"
+            (goHomeResponse)="checkGoHomeResponse($event)"
+          ></app-movie-list>
+        }
+      </div>
+    }
+  </nav>

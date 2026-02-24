@@ -9,14 +9,7 @@ import {
   DOCUMENT
 } from "@angular/core";
 import { Input as RouterInput } from "@angular/core";
-import {
-  NgIf,
-  NgClass,
-  NgStyle,
-  NgFor,
-  CurrencyPipe,
-  DatePipe
-} from "@angular/common";
+import { NgClass, NgStyle, CurrencyPipe, DatePipe } from "@angular/common";
 import { LoadingComponent } from "../../components/loading/loading.component";
 import { MovieListComponent } from "../../components/movie-list/movie-list.component";
 import { MoviesServiceV2 } from "src/app/providers/movies-v2.service";
@@ -28,15 +21,13 @@ import { EMPTY, of } from "rxjs";
     templateUrl: "./movie.component.html",
     styleUrls: ["./movie.component.css", "./rating.css"],
     imports: [
-        NgIf,
-        NgClass,
-        LoadingComponent,
-        NgStyle,
-        NgFor,
-        MovieListComponent,
-        CurrencyPipe,
-        DatePipe,
-    ]
+    NgClass,
+    LoadingComponent,
+    NgStyle,
+    MovieListComponent,
+    CurrencyPipe,
+    DatePipe
+]
 })
 export class MovieComponent implements OnChanges {
   @RouterInput() id: string;

@@ -1,13 +1,13 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgIf, NgFor, NgStyle } from '@angular/common';
+import { NgStyle } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
     selector: 'app-movie-list',
     templateUrl: './movie-list.component.html',
     styleUrls: ['./movie-list.component.css'],
-    imports: [NgIf, NgFor, NgStyle, NgxPaginationModule]
+    imports: [NgStyle, NgxPaginationModule]
 })
 export class MovieListComponent {
 

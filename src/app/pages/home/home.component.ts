@@ -7,7 +7,7 @@ import {
   DOCUMENT
 } from "@angular/core";
 import { ToolsService } from "../../providers/tools.service";
-import { CommonModule } from "@angular/common";
+
 import { LoadingComponent } from "../../components/loading/loading.component";
 import { MovieBackgroundComponent } from "../../components/movie-background/movie-background.component";
 import { MovieCardComponent } from "../../components/movie-card/movie-card.component";
@@ -20,11 +20,10 @@ import { Subject } from "rxjs";
     templateUrl: "./home.component.html",
     styleUrls: ["./home.component.css"],
     imports: [
-        LoadingComponent,
-        MovieBackgroundComponent,
-        MovieCardComponent,
-        CommonModule,
-    ]
+    LoadingComponent,
+    MovieBackgroundComponent,
+    MovieCardComponent
+]
 })
 export class HomeComponent implements OnInit, OnDestroy {
   messagesBackground: string[] = [

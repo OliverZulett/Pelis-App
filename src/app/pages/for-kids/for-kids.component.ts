@@ -1,6 +1,6 @@
 import { Component, inject, OnDestroy, OnInit, signal, DOCUMENT } from "@angular/core";
 import { ToolsService } from "../../providers/tools.service";
-import { NgIf, NgClass, NgFor, CommonModule } from "@angular/common";
+import { NgClass } from "@angular/common";
 import { LoadingComponent } from "../../components/loading/loading.component";
 import { MovieBackgroundComponent } from "../../components/movie-background/movie-background.component";
 import { MovieCardComponent } from "../../components/movie-card/movie-card.component";
@@ -14,12 +14,11 @@ import { takeUntil, tap } from "rxjs/operators";
   templateUrl: "./for-kids.component.html",
   styleUrls: ["./for-kids.component.css"],
   imports: [
-    CommonModule,
     LoadingComponent,
     MovieBackgroundComponent,
     MovieCardComponent,
-    NgxPaginationModule,
-  ],
+    NgxPaginationModule
+],
 })
 export class ForKidsComponent implements OnInit, OnDestroy {
   messagesBackground: string[] = [

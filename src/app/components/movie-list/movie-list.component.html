@@ -1,41 +1,47 @@
-<div class="moviesSearched w-100" *ngIf="movies">
-  <div class="d-flex pt-4">
-    <div class="d-flex flex-column">
-      <div class="d-flex">
-        <div
-          class="movie-card"
-          *ngFor="
-            let movie of movies
-              | paginate: { itemsPerPage: resultsPerPage, currentPage: p }
-          "
+@if (movies) {
+  <div class="moviesSearched w-100">
+    <div class="d-flex pt-4">
+      <div class="d-flex flex-column">
+        <div class="d-flex">
+          @for (
+            movie of movies
+            | paginate: { itemsPerPage: resultsPerPage, currentPage: p }
+            ; track
+            movie) {
+            <div
+              class="movie-card"
           [ngStyle]="{
             'background-image':
               'linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.5)),url(http://image.tmdb.org/t/p/w500' +
               movie.poster_path +
               ')'
           }"
-          (click)="goMovie(movie)"
-        >
-          <h3 class="title">{{ movie.title }}</h3>
+              (click)="goMovie(movie)"
+              >
+              <h3 class="title">{{ movie.title }}</h3>
+            </div>
+          }
         </div>
-      </div>
-      <div *ngIf="pagination" class="w-100 pt-4 d-flex justify-content-end">
-        <pagination-controls
-          class="search-pagination"
-          (pageChange)="p = $event"
-          (pageBoundsCorrection)="p = $event"
-          maxSize="5"
-          directionLinks="true"
-          autoHide="true"
-          responsive="true"
-          previousLabel=""
-          nextLabel=""
-          screenReaderPaginationLabel="Pagination"
-          screenReaderPageLabel="page"
-          screenReaderCurrentLabel="You're on page"
-        >
-        </pagination-controls>
+        @if (pagination) {
+          <div class="w-100 pt-4 d-flex justify-content-end">
+            <pagination-controls
+              class="search-pagination"
+              (pageChange)="p = $event"
+              (pageBoundsCorrection)="p = $event"
+              maxSize="5"
+              directionLinks="true"
+              autoHide="true"
+              responsive="true"
+              previousLabel=""
+              nextLabel=""
+              screenReaderPaginationLabel="Pagination"
+              screenReaderPageLabel="page"
+              screenReaderCurrentLabel="You're on page"
+              >
+            </pagination-controls>
+          </div>
+        }
       </div>
     </div>
   </div>
-</div>
+}

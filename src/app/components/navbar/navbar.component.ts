@@ -1,7 +1,7 @@
 import { Component, ViewChild, ElementRef, HostListener } from "@angular/core";
 import { RouterModule, RouterLink, RouterLinkActive } from "@angular/router";
 import { faTrashAlt, faTimes, faBars } from "@fortawesome/free-solid-svg-icons";
-import { CommonModule, NgClass, NgIf } from "@angular/common";
+import { CommonModule, NgClass } from "@angular/common";
 import { FaIconComponent } from "@fortawesome/angular-fontawesome";
 import { MovieListComponent } from "../movie-list/movie-list.component";
 import { MoviesServiceV2 } from "src/app/providers/movies-v2.service";
@@ -14,14 +14,13 @@ import { map, shareReplay } from "rxjs/operators";
     templateUrl: "./navbar.component.html",
     styleUrls: ["./navbar.component.css", "./hover.effect.link.css"],
     imports: [
-        CommonModule,
-        NgClass,
-        RouterLink,
-        NgIf,
-        FaIconComponent,
-        RouterLinkActive,
-        MovieListComponent,
-    ]
+    CommonModule,
+    NgClass,
+    RouterLink,
+    FaIconComponent,
+    RouterLinkActive,
+    MovieListComponent
+]
 })
 export class NavbarComponent {
   onSearch = false;
