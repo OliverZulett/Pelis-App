@@ -1,69 +1,240 @@
-# Pelis App
+# 🎬 Pelis App
 
-Una aplicación que provee información sobre películas, desarrollada en Angular 8 utiliza la API de The movie Db [The movie Db](https://developers.themoviedb.org/3/getting-started/introduction).
+<div align="center">
 
-## Comenzando 🚀
+![Angular](https://img.shields.io/badge/Angular-18-DD0031?style=for-the-badge&logo=angular&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.4-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-4.6-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
+![TMDb](https://img.shields.io/badge/TMDb_API-v3-01D277?style=for-the-badge&logo=themoviedatabase&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
 
-*Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas.*
+**Aplicación web para explorar películas, construida con Angular 18 y la API de The Movie Database.**
 
-### Pre-requisitos 📋
+Descubre las películas más populares, las que están en cartelera, contenido para niños y mucho más.
 
-*Necesitas los siguientes softwares instalados en tu máquina local*
+[Demo en vivo](https://pelis-app-f0200.web.app/) · [Reportar bug](https://github.com/OliverZulett/Pelis-App/issues) · [Solicitar feature](https://github.com/OliverZulett/Pelis-App/issues)
 
-* [Node js (LTS version)](https://nodejs.org/es/download/)
-* [Angular Cli](https://cli.angular.io/)
-* [Typescrypt](https://www.typescriptlang.org/#download-links)
+</div>
 
-### Instalación 🔧
+---
 
-*Para ejecutar la aplicación sigue los siguientes pasos:*
+## 📸 Captura de pantalla
 
-*Actualiza los repositorios de node ejecutando el siguiente comando desde la raíz del proyecto*
+<div align="center">
 
-```nodejs
+![Pelis App Screenshot](assets/app.png)
+
+</div>
+
+---
+
+## ✨ Características
+
+- 🏆 **Películas Populares** — Explora las películas mejor valoradas de todos los tiempos (rating ≥ 8.0 y más de 2000 votos).
+- 🎥 **Cartelera** — Consulta las películas que se están proyectando actualmente en cines.
+- 👶 **Para Niños** — Sección dedicada con películas certificadas para todo público (clasificación G).
+- 🔍 **Buscador** — Busca películas por nombre directamente desde la barra de navegación.
+- 🎞️ **Detalle de Película** — Visualiza información completa: sinopsis, géneros, presupuesto, ingresos, fecha de estreno, duración y más.
+- 📚 **Colecciones** — Si una película pertenece a una saga, se muestran las demás películas de la colección.
+- 📄 **Paginación** — Navegación paginada para recorrer grandes catálogos de películas con facilidad.
+- 🌐 **Contenido en Español** — Toda la información de películas se muestra en español (es-ES).
+- 🎨 **Animaciones** — Transiciones y efectos visuales con Animate.css y CSS personalizado.
+- 📱 **Responsive** — Diseño adaptable a dispositivos móviles, tablets y escritorio.
+
+---
+
+## 🏗️ Arquitectura del proyecto
+
+```
+src/app/
+├── components/           # Componentes reutilizables
+│   ├── footer/           # Pie de página
+│   ├── loading/          # Indicador de carga animado
+│   ├── movie-background/ # Imagen de fondo dinámica
+│   ├── movie-card/       # Tarjeta de película con hover
+│   ├── movie-list/       # Lista paginada de películas
+│   └── navbar/           # Barra de navegación con buscador
+├── interfaces/           # Interfaces TypeScript para tipado
+│   ├── movie.response.ts
+│   ├── movies.response.ts
+│   ├── collection.response.ts
+│   └── pagination.ts
+├── pages/                # Páginas/vistas de la aplicación
+│   ├── home/             # Página principal (populares)
+│   ├── in-theatres/      # Cartelera
+│   ├── for-kids/         # Películas para niños
+│   ├── movie/            # Detalle de una película
+│   └── about/            # Acerca de la app
+├── pipes/                # Pipes personalizados
+│   └── truncate-text.pipe.ts
+├── providers/            # Servicios
+│   ├── base.service.ts   # Servicio HTTP base con autenticación
+│   ├── movies-v2.service.ts # Servicio principal de películas
+│   └── tools.service.ts  # Utilidades (paginación, backgrounds)
+└── app-routing.module.ts # Configuración de rutas
+```
+
+---
+
+## 🛠️ Tecnologías
+
+| Tecnología         | Versión | Descripción                                          |
+| ------------------ | ------- | ---------------------------------------------------- |
+| **Angular**        | 18.2.x  | Framework principal para la SPA                      |
+| **TypeScript**     | 5.4.x   | Lenguaje de programación tipado                      |
+| **Bootstrap**      | 4.6.x   | Framework CSS para diseño responsivo                 |
+| **RxJS**           | 6.6.x   | Programación reactiva y manejo de streams            |
+| **Animate.css**    | 4.1.x   | Animaciones CSS predefinidas                         |
+| **Font Awesome**   | 6.6.x   | Iconografía (via `@fortawesome/angular-fontawesome`) |
+| **ngx-pagination** | 6.0.x   | Componente de paginación para Angular                |
+| **jQuery**         | 3.7.x   | Requerido por Bootstrap 4                            |
+| **Node.js**        | 20.15.x | Entorno de ejecución (ver `.nvmrc`)                  |
+
+---
+
+## 🚀 Instalación y ejecución
+
+### Pre-requisitos
+
+Asegúrate de tener instalado:
+
+- [Node.js](https://nodejs.org/) v20.x (LTS) — puedes utilizar [nvm](https://github.com/nvm-sh/nvm) con el archivo `.nvmrc` incluido
+- [Angular CLI](https://angular.dev/tools/cli) v18.x
+- Una **API Key** de [The Movie Database (TMDb)](https://www.themoviedb.org/settings/api)
+
+### 1. Clonar el repositorio
+
+```bash
+git clone https://github.com/OliverZulett/Pelis-App.git
+cd Pelis-App
+```
+
+### 2. Instalar dependencias
+
+```bash
 npm install
 ```
 
-*consigue una [API_Key](https://www.themoviedb.org/settings/api) de MOvieDB para conectarte a sus servicios REST, coloca tu API_Key en el archivo de movies.service.ts ubicado en la ruta*
+### 3. Configurar variables de entorno
 
-```
-src/app/providers/movie.service.ts
-```
+La aplicación necesita un **API Key (Bearer Token)** de TMDb para funcionar. Crea el archivo de entorno:
 
-*una vez configurada tu API_Key ejecuta la aplicación con el siguiente comando desde la raíz del proyecto*
-
-```
-ng s
+```bash
+# Crea el archivo src/environments/environment.ts
 ```
 
-*finalmente desde tu navegador ingresa a la siguiente dirección para ver la aplicación en funcionamiento*
-
+```typescript
+// src/environments/environment.ts
+export const environment = {
+  production: false,
+  api_key: "TU_API_READ_ACCESS_TOKEN_AQUI",
+  api_url: "https://api.themoviedb.org/3",
+};
 ```
-http://localhost:4200
+
+> 💡 **Nota:** El `api_key` corresponde al **API Read Access Token (Bearer)** de TMDb, no a la API Key simple. Puedes obtenerlo en [themoviedb.org/settings/api](https://www.themoviedb.org/settings/api).
+
+### 4. Ejecutar en modo desarrollo
+
+```bash
+npm start
 ```
 
-## Construido con 🛠️
+La aplicación estará disponible en **http://localhost:4200** 🚀
 
-*Menciona las herramientas que utilizaste para crear tu proyecto*
+---
 
-- [Angular](https://angular.io/) - Framework Front end
-- [The movieDB](https://www.themoviedb.org/?language=es) - Bases de datos
-- [Bootstrap](https://getbootstrap.com/) - Framework CSS
+## 🌍 Despliegue
 
-## Autor ✒️
+### Netlify
 
-- **Joshua Zulett** - *Diseño y Desarrollo*
+El proyecto incluye un archivo `netlify.toml` preconfigurado. Para el despliegue en producción, configura las siguientes **variables de entorno** en Netlify:
 
-## Licencia 📄
+| Variable  | Descripción                                                  |
+| --------- | ------------------------------------------------------------ |
+| `API_KEY` | API Read Access Token (Bearer) de TMDb                       |
+| `API_URL` | URL base de la API (default: `https://api.themoviedb.org/3`) |
 
-Este proyecto está bajo la Licencia (MIT) - mira el archivo [LICENSE.md](https://gist.github.com/Villanuevand/LICENSE.md) para detalles
+El script `scripts/set-env.js` se encarga de inyectar las variables de entorno en el archivo `environment.ts` durante el build de producción.
 
-## Expresiones de Gratitud 🎁
+```bash
+# Build de producción (usado por Netlify)
+npm run build:prod
+```
 
-- Comenta a otros sobre este proyecto 📢
-- Invita una cerveza 🍺 o un café ☕ a alguien del equipo.
-- Da las gracias públicamente 🤓.
+### Firebase Hosting
 
-------
+También se incluye configuración para Firebase Hosting:
 
-⌨️ con ❤️ por [Joshua zulett](https://github.com/joshlive77) 😊
+```bash
+# Build de producción
+npm run build:prod
+
+# Deploy a Firebase
+firebase deploy
+```
+
+---
+
+## 📁 Scripts disponibles
+
+| Comando              | Descripción                                            |
+| -------------------- | ------------------------------------------------------ |
+| `npm start`          | Inicia el servidor de desarrollo en `localhost:4200`   |
+| `npm run build`      | Compila la aplicación (modo desarrollo)                |
+| `npm run build:prod` | Genera el build de producción con variables de entorno |
+| `npm test`           | Ejecuta las pruebas unitarias con Karma                |
+| `npm run lint`       | Ejecuta el linter de TypeScript                        |
+| `npm run e2e`        | Ejecuta las pruebas end-to-end con Protractor          |
+
+---
+
+## 🗺️ Rutas de la aplicación
+
+| Ruta           | Componente            | Descripción                                |
+| -------------- | --------------------- | ------------------------------------------ |
+| `/home`        | `HomeComponent`       | Películas más populares (página principal) |
+| `/in-theatres` | `InTheatresComponent` | Películas en cartelera actualmente         |
+| `/for-kids`    | `ForKidsComponent`    | Películas aptas para niños                 |
+| `/movie/:id`   | `MovieComponent`      | Detalle completo de una película           |
+| `/about`       | `AboutComponent`      | Información sobre la aplicación            |
+
+---
+
+## 📡 API
+
+Esta aplicación consume la **API v3 de The Movie Database (TMDb)**. Los endpoints principales utilizados son:
+
+- `GET /movie/now_playing` — Películas en cartelera
+- `GET /discover/movie` — Descubrimiento con filtros (populares, para niños)
+- `GET /movie/{id}` — Detalle de una película
+- `GET /collection/{id}` — Colección/saga de películas
+- `GET /search/movie` — Búsqueda de películas por nombre
+
+Para más información consulta la [documentación oficial de TMDb](https://developer.themoviedb.org/docs/getting-started).
+
+---
+
+## ✒️ Autor
+
+<div align="center">
+
+Desarrollado con ❤️ por **Oliver Zulett**
+
+[![GitHub](https://img.shields.io/badge/GitHub-OliverZulett-181717?style=for-the-badge&logo=github)](https://github.com/OliverZulett)
+
+</div>
+
+---
+
+## 📄 Licencia
+
+Este proyecto está bajo la licencia **MIT**. Consulta el archivo [LICENSE](LICENSE) para más detalles.
+
+---
+
+<div align="center">
+
+⭐ Si te gusta este proyecto, ¡no olvides darle una estrella en GitHub!
+
+</div>
