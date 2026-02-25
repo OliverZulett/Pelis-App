@@ -21,6 +21,6 @@ if (!fs.existsSync(targetDir)) {
   fs.mkdirSync(targetDir, { recursive: true });
 }
 
-const targetPath = path.join(targetDir, "environment.prod.ts");
+const targetPath = path.join(targetDir, "environment.ts");
 fs.writeFileSync(targetPath, content);
 console.log("Production environment file generated successfully");
