@@ -2,17 +2,9 @@
 
 <div align="center">
 
-![Angular](https://img.shields.io/badge/Angular-18-DD0031?style=for-the-badge&logo=angular&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.4-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-![Bootstrap](https://img.shields.io/badge/Bootstrap-4.6-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
-![TMDb](https://img.shields.io/badge/TMDb_API-v3-01D277?style=for-the-badge&logo=themoviedatabase&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
-
-**Aplicación web para explorar películas, construida con Angular 18 y la API de The Movie Database.**
+**Aplicación web para explorar películas, construida con Angular 21 y la API de The Movie Database.**
 
 Descubre las películas más populares, las que están en cartelera, contenido para niños y mucho más.
-
-[Demo en vivo](https://pelis-app-f0200.web.app/) · [Reportar bug](https://github.com/OliverZulett/Pelis-App/issues) · [Solicitar feature](https://github.com/OliverZulett/Pelis-App/issues)
 
 </div>
 
@@ -76,22 +68,6 @@ src/app/
 
 ---
 
-## 🛠️ Tecnologías
-
-| Tecnología         | Versión | Descripción                                          |
-| ------------------ | ------- | ---------------------------------------------------- |
-| **Angular**        | 18.2.x  | Framework principal para la SPA                      |
-| **TypeScript**     | 5.4.x   | Lenguaje de programación tipado                      |
-| **Bootstrap**      | 4.6.x   | Framework CSS para diseño responsivo                 |
-| **RxJS**           | 6.6.x   | Programación reactiva y manejo de streams            |
-| **Animate.css**    | 4.1.x   | Animaciones CSS predefinidas                         |
-| **Font Awesome**   | 6.6.x   | Iconografía (via `@fortawesome/angular-fontawesome`) |
-| **ngx-pagination** | 6.0.x   | Componente de paginación para Angular                |
-| **jQuery**         | 3.7.x   | Requerido por Bootstrap 4                            |
-| **Node.js**        | 20.15.x | Entorno de ejecución (ver `.nvmrc`)                  |
-
----
-
 ## 🚀 Instalación y ejecución
 
 ### Pre-requisitos
@@ -99,7 +75,7 @@ src/app/
 Asegúrate de tener instalado:
 
 - [Node.js](https://nodejs.org/) v20.x (LTS) — puedes utilizar [nvm](https://github.com/nvm-sh/nvm) con el archivo `.nvmrc` incluido
-- [Angular CLI](https://angular.dev/tools/cli) v18.x
+- [Angular CLI](https://angular.dev/tools/cli) v21.x
 - Una **API Key** de [The Movie Database (TMDb)](https://www.themoviedb.org/settings/api)
 
 ### 1. Clonar el repositorio
@@ -160,18 +136,6 @@ El script `scripts/set-env.js` se encarga de inyectar las variables de entorno e
 ```bash
 # Build de producción (usado por Netlify)
 npm run build:prod
-```
-
-### Firebase Hosting
-
-También se incluye configuración para Firebase Hosting:
-
-```bash
-# Build de producción
-npm run build:prod
-
-# Deploy a Firebase
-firebase deploy
 ```
 
 ---
